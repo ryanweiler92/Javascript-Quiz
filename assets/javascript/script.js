@@ -39,3 +39,25 @@ const questions = [{
     choices: ["It refers to the current object", "It refers to the previous object", "It is a variable that contains a value", "None of the above"],
     correctAnswer: 0
 }];
+
+var startButton = document.querySelector("#start-btn");
+var questionText = document.querySelector("#question-text");
+var answerButtons = document.querySelector(".answer-button");
+var quizContainer = document.querySelector("#quiz-container");
+var counter = document.getElementById("#timer");
+
+var timer = function() {
+    var seconds = 60;
+    function tick() {
+        //var counter = document.getElementById("#timer");
+        seconds--;
+        counter.innerHTML = "0:" + (seconds < 10 ? "0" : "") + String(seconds);
+            if (seconds > 0) {
+                setTimeout(tick, 1001);
+            } else {
+                alert("Game over");
+            }
+        } tick();
+}
+
+startButton.addEventListener("click", timer);
