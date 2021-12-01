@@ -69,6 +69,14 @@ header h2 {
     font-family: FIFA;
 }
 
+.hero button:hover {
+    background-color: yellow;
+}
+
+.hero button:click {
+    background-color: green;
+}
+
 .quiz-container {
     width: 100%;
     height: 600px;
@@ -115,4 +123,10 @@ header h2 {
     text-align: left;
     font-family: FIFA;
     font-size: 25px;
+    border-radius: 10px;
+}
+
+.answers-container ul li button:hover {
+    background: #0E1E5B;
+    color: white;
 }
