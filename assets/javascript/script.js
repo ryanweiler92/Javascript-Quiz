@@ -1,6 +1,6 @@
 const questions = [{
     question: "What is the HTML element that we place Javascript in?",
-    choices: ['"<js>"', '"<javascript>"', '"<scripting>"', '"<script>"'],
+    choices: ["<js>", "<javascript>", "<scripting>", "<script>"],
     correctAnswer: 3
 }, {
     question: "JavaScript is a ____-side programming language.",
@@ -85,7 +85,7 @@ var createQuestion = function(q) {
 
             var choicesButton = document.createElement('button');
             choicesButton.className = "answers-container"
-            choicesButton.innerHTML = questions[p].choices;
+            choicesButton.innerHTML = questions[i].choices[p];
 
             answerListLi.appendChild(choicesButton);
 
