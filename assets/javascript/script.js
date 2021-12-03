@@ -70,10 +70,11 @@ var timer = function() {
 
 var currentQuestionIndex = 0;
 var score = 0;
-
+var scoreCounter = document.getElementById("score-counter");
+scoreCounter.innerHTML= score;
 
 var createQuestion = function () {
-
+    
     var questionDiv = document.createElement('div');
     questionDiv.className = "question-container";
     questionDiv.id = 'question';
@@ -107,7 +108,7 @@ var createQuestion = function () {
 
 var checkAnswer = function() {
     if (questions.choice == questions.correctAnswer) {
-        score = score + 10;
+        score++;
         var questionDiv = document.getElementById('question');
         questionDiv.remove();
         var answersDiv = document.getElementById("answers");
@@ -115,10 +116,16 @@ var checkAnswer = function() {
         currentQuestionIndex++;
         createQuestion();
     } else {
+        score--;
+        console.log(score);
+        var questionDiv = document.getElementById('question');
+        questionDiv.remove();
+        var answersDiv = document.getElementById("answers");
+        answersDiv.remove();
         currentQuestionIndex++;
         createQuestion();
     }
-}
+};
 
 
 
