@@ -73,7 +73,7 @@ var score = 0;
 
 
 var createQuestion = function () {
-    
+
     var questionDiv = document.createElement('div');
     questionDiv.className = "question-container";
     questionDiv.id = 'question';
@@ -85,6 +85,7 @@ var createQuestion = function () {
 
     var answersDiv = document.createElement('div');
     answersDiv.className = "answers-container";
+    answersDiv.id = 'answers'
     document.body.appendChild(answersDiv);
 
     var answersList = document.createElement('ul');
@@ -98,9 +99,26 @@ var createQuestion = function () {
         answersButtons.textContent = questions[currentQuestionIndex].choices[p];
     
         answersLi.appendChild(answersButtons);
+
+        answersButtons.addEventListener("click", checkAnswer)
     
 }
 }    
+
+var checkAnswer = function() {
+    if (questions.choice == questions.correctAnswer) {
+        score = score + 10;
+        var questionDiv = document.getElementById('question');
+        questionDiv.remove();
+        var answersDiv = document.getElementById("answers");
+        answersDiv.remove();
+        currentQuestionIndex++;
+        createQuestion();
+    } else {
+        currentQuestionIndex++;
+        createQuestion();
+    }
+}
 
 
 
