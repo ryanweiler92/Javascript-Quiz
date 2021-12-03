@@ -68,19 +68,19 @@ var timer = function() {
         } time();
 };
 
-var questionCount = 0;
+var currentQuestionIndex = 0;
 var score = 0;
 
 
 var createQuestion = function () {
-    for (var i = 0; i < 10; i++) {
+    
     var questionDiv = document.createElement('div');
     questionDiv.className = "question-container";
     questionDiv.id = 'question';
     document.body.appendChild(questionDiv);
 
     var questionTitle = document.createElement('h2');
-    questionTitle.innerHTML = questions[i].question;
+    questionTitle.innerHTML = questions[currentQuestionIndex].question;
     questionDiv.appendChild(questionTitle);
 
     var answersDiv = document.createElement('div');
@@ -93,15 +93,15 @@ var createQuestion = function () {
     var answersLi = document.createElement('li');
     answersList.appendChild(answersLi);
    
-    for (var p = 0; p < questions[i].choices.length; p++) {
+    for (var p = 0; p < questions[currentQuestionIndex].choices.length; p++) {
         var answersButtons = document.createElement('button');
-        answersButtons.textContent = questions[i].choices[p];
+        answersButtons.textContent = questions[currentQuestionIndex].choices[p];
     
         answersLi.appendChild(answersButtons);
     
 }
 }    
-}
+
 
 
 /*var createQuestion = function() {
