@@ -84,7 +84,7 @@ header h2 {
 }
 
 .question-container {
-    width: 70%;
+    width: 40%;
     height: 100px;
     border: 2px solid green;
     margin: 0 auto;
@@ -100,7 +100,7 @@ header h2 {
 }
 
 .answers-container {
-    width: 70%;
+    width: 40%;
     height: 250px;
     border: 2px solid purple;
     margin: 0 auto;

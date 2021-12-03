@@ -72,35 +72,36 @@ var questionCount = 0;
 var score = 0;
 
 
-var createQuestion = function (index) {
+var createQuestion = function () {
+    for (var i = 0; i < 10; i++) {
     var questionDiv = document.createElement('div');
     questionDiv.className = "question-container";
     questionDiv.id = 'question';
     document.body.appendChild(questionDiv);
 
     var questionTitle = document.createElement('h2');
-    questionTitle.innerHTML = questions[index].question;
+    questionTitle.innerHTML = questions[i].question;
     questionDiv.appendChild(questionTitle);
 
+    var answersDiv = document.createElement('div');
+    answersDiv.className = "answers-container";
+    document.body.appendChild(answersDiv);
+
     var answersList = document.createElement('ul');
-    questionDiv.appendChild(answersList);
+    answersDiv.appendChild(answersList);
 
     var answersLi = document.createElement('li');
     answersList.appendChild(answersLi);
-
-    createAnswers();
+   
+    for (var p = 0; p < questions[i].choices.length; p++) {
+        var answersButtons = document.createElement('button');
+        answersButtons.textContent = questions[i].choices[p];
+    
+        answersLi.appendChild(answersButtons);
     
 }
-
-var createAnswers = function(index) {
-    for (var i = 0; i <questions[index].choices.length; i++) {
-    var answersButtons = document.createElement('button');
-
-    answersLi.appendChild(answersButtons);
-
-
+}    
 }
-};
 
 
 /*var createQuestion = function() {
@@ -139,3 +140,4 @@ var createAnswers = function(index) {
 
 startButton.addEventListener("click", timer);
 startButton.addEventListener("click", createQuestion);
+
