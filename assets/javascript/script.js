@@ -2,52 +2,52 @@ const questions = [{
     id: 1,
     question: "Is a variable named 'orange' the same as 'Orange' in javascript?",
     choices: ['Yes', 'No', 'Only when we use strict', "None of the above"],
-    correctAnswer: 1
+    correctAnswer: 'No'
 }, {
     id: 2,
     question: "JavaScript is a ____-side programming language.",
     choices: ["Client", "Server", "Both", "None"],
-    correctAnswer: 2
+    correctAnswer: "Both"
 }, {
     id: 3,
     question: "Which of the following will write the message “Hello and welcome!” in an alert box?",
     choices: ["alertBox(“Hello and welcome!”);", "alert(Hello and welcome!);", "msgAlert(“Hello and welcome!”);", "alert(“Hello and welcome!”);"],
-    correctAnswer: 3
+    correctAnswer: "alert(“Hello and welcome!”);"
 }, {
     id: 4,
     question: '"Which is the correct "if" statemnts to execute certain code if "x" is equal to 2?"',
     choices: ["if(x 2)", "if(x = 2)", "if(x == 2)", "if(x != 2 )"],
-    correctAnswer: 2
+    correctAnswer: "if(x == 2)"
 }, {
     id: 5,
     question: "JavaScript files have an extension of?",
     choices: [".java", ".js", ".javascript", ".xml"],
-    correctAnswer: 1
+    correctAnswer: ".js"
 }, {
     id: 6,
     question: "A function associated with an object is called?",
     choices: ["Function", "Method", "Link", "None"],
-    correctAnswer: 1
+    correctAnswer: "Method"
 }, {
     id: 7,
     question: "Which of the following function of the array object returns a string representing the array and its elements?",
     choices: ["toSource()", "sort()", "splice()", "toString()"],
-    correctAnswer: 3
+    correctAnswer: "toString()"
 }, {
     id: 8,
     question: "GetMonth() returns the month as a",
     choices: ["Int", "Float", "Char", "String"],
-    correctAnswer: 0
+    correctAnswer: "Int"
 }, {
     id: 9,
     question: "Which of the dialog boxes displays a message and a data entry field?",
     choices: ["Alert()", "Prompt()", "Confirm()", "Msg()"],
-    correctAnswer: 1
+    correctAnswer: "Prompt()"
 }, {
     id: 10,
     question: '"What is meant by the "this" keyword in javascript?"',
     choices: ["It refers to the current object", "It refers to the previous object", "It is a variable that contains a value", "None of the above"],
-    correctAnswer: 0
+    correctAnswer: "It refers to the current object"
 }];
 
 var startButton = document.querySelector("#start-btn");
@@ -79,11 +79,20 @@ scoreCounter.innerHTML= score;
 }
 
 var createQuestion = function () {
-    
+    var questionNumberDiv = document.createElement('div');
+    questionNumberDiv.className = "question-number-container";
+    questionNumberDiv.id = "question-number-div"
+    document.body.appendChild(questionNumberDiv);
+
+    var questionNumber = document.createElement('h2');
+    questionNumber.textContent = "Question: " + questions[currentQuestionIndex].id;
+    questionNumberDiv.appendChild(questionNumber);
+
     var questionDiv = document.createElement('div');
     questionDiv.className = "question-container";
     questionDiv.id = 'question';
     document.body.appendChild(questionDiv);
+
 
     var questionTitle = document.createElement('h2');
     questionTitle.innerHTML = questions[currentQuestionIndex].question;
@@ -102,7 +111,7 @@ var createQuestion = function () {
    
     for (var p = 0; p < questions[currentQuestionIndex].choices.length; p++) {
         var answersButtons = document.createElement('button');
-        answersButtons.id = 'answers-buttons'
+        answersButtons.id = 'answers-buttons' + p;
         answersButtons.textContent = questions[currentQuestionIndex].choices[p];
         
         answersLi.appendChild(answersButtons);
@@ -112,74 +121,35 @@ var createQuestion = function () {
 }
 };    
 
-var checkAnswer = function() {
-    
 
-    for (var i=0; i < questions[currentQuestionIndex].choices.length; i++) {
-    if (questions[currentQuestionIndex].choices[i] == questions[currentQuestionIndex].correctAnswer) {
-        
+
+var checkAnswer = function(event) {
+
+    if (event.target.textContent == questions[currentQuestionIndex].correctAnswer) {
         score++; 
-        console.log(score);
         var questionDiv = document.getElementById('question');
         questionDiv.remove();
+        var questionNumberDiv = document.getElementById('question-number-div');
+        questionNumberDiv.remove();
         var answersDiv = document.getElementById("answers");
         answersDiv.remove();
         currentQuestionIndex++; 
         createQuestion();
         updateScore();
-        
     } else {
-
-        console.log(questions[currentQuestionIndex].correctAnswer);
         score--;
-        console.log(score + "SCORE");
         var questionDiv = document.getElementById('question');
         questionDiv.remove();
+        var questionNumberDiv = document.getElementById('question-number-div');
+        questionNumberDiv.remove();
         var answersDiv = document.getElementById("answers");
         answersDiv.remove();
         currentQuestionIndex++;
         createQuestion();
         updateScore();
-        
     }
-}
-}
-;
-
-
-
-/*var createQuestion = function() {
-    for (let i=0; i<questions.length; i++) {
-        
-        var questionDiv = document.createElement('div');
-        questionDiv.className = "question-container";
-        document.body.appendChild(questionDiv)
-        
-        var questionTitle = document.createElement('h2');
-        questionTitle.innerHTML = questions[i].question;
-        questionDiv.appendChild(questionTitle);
-
-        var answersDiv = document.createElement('div');
-        answersDiv.className = "answers-container";
-        document.body.appendChild(answersDiv);
-        var answerList = document.createElement('ul')
-        answersDiv.appendChild(answerList);
-
-        for (let p=0; p<questions[i].choices.length; p++) {
-
-            var answerListLi = document.createElement('li');
-            answerList.appendChild(answerListLi);
-
-            var choicesButton = document.createElement('button');
-            choicesButton.className = "answers-container"
-            choicesButton.textContent = questions[i].choices[p];
-
-            answerListLi.appendChild(choicesButton);
-
-            
-        }
-    }
-}*/
+};
+   
 
 
 startButton.addEventListener("click", timer);

@@ -106,13 +106,30 @@ header h2 {
     border: 2px solid red;
 }
 
+.question-number-container {
+    width: 60%;
+    height: 50px;
+    border: 2px solid green;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    text-align: center;
+    margin-top: 15px; 
+}
+
+.question-number-container h2 {
+    background: white;
+    color: #3562A6;
+    border-radius: 10px;
+    font-size: 30px;
+}
+
 .question-container {
-    width: 40%;
+    width: 60%;
     height: 100px;
     border: 2px solid green;
     margin: 0 auto;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 15px;
 }
 
 .question-container h2 {
