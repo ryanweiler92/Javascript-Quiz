@@ -181,12 +181,28 @@ var endGame = function() {
             document.body.appendChild(finalScoreMessageDiv);
 
             var finalScoreMessage = document.createElement('h2');
-            finalScoreMessage.innerHTML = "<h2>Congratulations on finishing the Javascript quiz! You fished with a score of " + score + ". Click <a href='github.com/ryanweiler92/Javascript-Quiz'>here</a> to save your final score!</h2>"
+            finalScoreMessage.innerHTML = "<h2>Congratulations on finishing the Javascript quiz! You finished with a score of " + score + ". Click submit to save your final score!</h2>"
             finalScoreMessageDiv.appendChild(finalScoreMessage);
-            
 
+            var submitScoreForm = document.createElement('form');
+            finalScoreMessageDiv.appendChild(submitScoreForm);
+
+            var initalsInput = document.createElement('input');
+            initalsInput.innerHTML = '<input type="text" placeholder="Your Initals" id="initals" name="initals" />';
+            submitScoreForm.appendChild(initalsInput);
+            
+            var highScoreButton = document.createElement('button');
+            highScoreButton.textContent = 'submit';
+            submitScoreForm.appendChild(highScoreButton);
+            highScoreButton.addEventListener("click", saveHighScore)
 
 };
+
+var saveHighScore = function () {
+    localStorage.setItem("initals", score)
+    
+
+}
    
 
 startButton.addEventListener("click", timer);
