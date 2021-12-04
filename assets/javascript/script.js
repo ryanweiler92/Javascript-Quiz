@@ -70,7 +70,6 @@ var timer = function() {
 
 var currentQuestionIndex = 0;
 var score = 0;
-var answersArray  = [];
 
 
 var updateScore = function() {
@@ -79,6 +78,9 @@ scoreCounter.innerHTML= score;
 }
 
 var createQuestion = function () {
+
+    startButton.style.display = "none";
+
     var questionNumberDiv = document.createElement('div');
     questionNumberDiv.className = "question-number-container";
     questionNumberDiv.id = "question-number-div"
@@ -125,8 +127,8 @@ var createQuestion = function () {
 
 var checkAnswer = function(event) {
 
-    if (event.target.textContent == questions[currentQuestionIndex].correctAnswer) {
-        score++; 
+     if (event.target.textContent == questions[currentQuestionIndex].correctAnswer) {
+        score = score + 10; 
         var questionDiv = document.getElementById('question');
         questionDiv.remove();
         var questionNumberDiv = document.getElementById('question-number-div');
@@ -134,10 +136,14 @@ var checkAnswer = function(event) {
         var answersDiv = document.getElementById("answers");
         answersDiv.remove();
         currentQuestionIndex++; 
-        createQuestion();
         updateScore();
-    } else {
-        score--;
+        if (currentQuestionIndex > 9) {
+            console.log("Game Over")
+        } else{
+        createQuestion();
+        }
+    }else{
+        score = score - 5;
         var questionDiv = document.getElementById('question');
         questionDiv.remove();
         var questionNumberDiv = document.getElementById('question-number-div');
@@ -145,8 +151,12 @@ var checkAnswer = function(event) {
         var answersDiv = document.getElementById("answers");
         answersDiv.remove();
         currentQuestionIndex++;
-        createQuestion();
         updateScore();
+        if (currentQuestionIndex > 9) {
+            console.log("Game Over")
+        } else{
+        createQuestion();
+        }
     }
 };
    

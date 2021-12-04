@@ -109,7 +109,6 @@ header h2 {
 .question-number-container {
     width: 60%;
     height: 50px;
-    border: 2px solid green;
     margin: 0 auto;
     margin-bottom: 15px;
     text-align: center;
@@ -126,7 +125,6 @@ header h2 {
 .question-container {
     width: 60%;
     height: 100px;
-    border: 2px solid green;
     margin: 0 auto;
     text-align: center;
     margin-top: 15px;
@@ -142,7 +140,6 @@ header h2 {
 .answers-container {
     width: 40%;
     height: 250px;
-    border: 2px solid purple;
     margin: 0 auto;
 }
 
