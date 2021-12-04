@@ -52,30 +52,29 @@ const questions = [{
 
 var startButton = document.querySelector("#start-btn");
 var counter = document.getElementById("#timer");
-
-
+var currentQuestionIndex = 0;
+var score = 0;
+var seconds = 60;
 
 var timer = function() {
-    var seconds = 60;
+    
     function time() {
         seconds--;
         counter.innerHTML = "0:" + (seconds < 10 ? "0" : "") + String(seconds);
             if (seconds > 0) {
-                setTimeout(time, 100001); //delete 2 zeros to go back to 1 minute; 
+                setTimeout(time, 1001); //delete 2 zeros to go back to 1 minute; 
             } else {
                 alert("Times up!");
             }
         } time();
 };
 
-var currentQuestionIndex = 0;
-var score = 0;
-
 
 var updateScore = function() {
     var scoreCounter = document.getElementById("score-counter");
-scoreCounter.innerHTML= score;
-}
+    scoreCounter.innerHTML= score;
+};
+
 
 var createQuestion = function () {
 
@@ -94,7 +93,6 @@ var createQuestion = function () {
     questionDiv.className = "question-container";
     questionDiv.id = 'question';
     document.body.appendChild(questionDiv);
-
 
     var questionTitle = document.createElement('h2');
     questionTitle.innerHTML = questions[currentQuestionIndex].question;
@@ -119,10 +117,8 @@ var createQuestion = function () {
         answersLi.appendChild(answersButtons);
 
         answersButtons.addEventListener("click", checkAnswer)
-    
 }
 };    
-
 
 
 var checkAnswer = function(event) {
@@ -139,7 +135,8 @@ var checkAnswer = function(event) {
         updateScore();
         if (currentQuestionIndex > 9) {
             console.log("Game Over")
-        } else{
+            endGame();
+        } else {
         createQuestion();
         }
     }else{
@@ -154,13 +151,32 @@ var checkAnswer = function(event) {
         updateScore();
         if (currentQuestionIndex > 9) {
             console.log("Game Over")
+            endGame();
         } else{
         createQuestion();
+        
         }
     }
 };
-   
 
+var endGame = function() {
+    counter = seconds
+            if (seconds > 49) {
+                score = score + 50
+            }else if (seconds > 39) {
+                score = score + 40
+            }else if (seconds > 29) {
+                score = score + 30
+            }else if (seconds > 19) {
+                score = score + 20
+            }else if (seconds > 9) {
+                score = score + 10
+            } else{
+                score = score;
+            }
+            updateScore();
+}
+   
 
 startButton.addEventListener("click", timer);
 startButton.addEventListener("click", createQuestion);
