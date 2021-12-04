@@ -175,9 +175,21 @@ var endGame = function() {
                 score = score;
             }
             updateScore();
-}
+
+            var finalScoreMessageDiv = document.createElement('div');
+            finalScoreMessageDiv.className = "question-container";
+            document.body.appendChild(finalScoreMessageDiv);
+
+            var finalScoreMessage = document.createElement('h2');
+            finalScoreMessage.innerHTML = "<h2>Congratulations on finishing the Javascript quiz! You fished with a score of " + score + ". Click <a href='github.com/ryanweiler92/Javascript-Quiz'>here</a> to save your final score!</h2>"
+            finalScoreMessageDiv.appendChild(finalScoreMessage);
+            
+
+
+};
    
 
 startButton.addEventListener("click", timer);
 startButton.addEventListener("click", createQuestion);
+
 
