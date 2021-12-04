@@ -1,8 +1,8 @@
 const questions = [{
     id: 1,
-    question: "What is the HTML element that we place Javascript in?",
-    choices: ['<js>', "<javascript>", "<scripting>", "<script>"],
-    correctAnswer: 3
+    question: "Is a variable named 'orange' the same as 'Orange' in javascript?",
+    choices: ['Yes', 'No', 'Only when we use strict', "None of the above"],
+    correctAnswer: 1
 }, {
     id: 2,
     question: "JavaScript is a ____-side programming language.",
@@ -70,8 +70,13 @@ var timer = function() {
 
 var currentQuestionIndex = 0;
 var score = 0;
-var scoreCounter = document.getElementById("score-counter");
+var answersArray  = [];
+
+
+var updateScore = function() {
+    var scoreCounter = document.getElementById("score-counter");
 scoreCounter.innerHTML= score;
+}
 
 var createQuestion = function () {
     
@@ -97,35 +102,49 @@ var createQuestion = function () {
    
     for (var p = 0; p < questions[currentQuestionIndex].choices.length; p++) {
         var answersButtons = document.createElement('button');
+        answersButtons.id = 'answers-buttons'
         answersButtons.textContent = questions[currentQuestionIndex].choices[p];
-    
+        
         answersLi.appendChild(answersButtons);
 
         answersButtons.addEventListener("click", checkAnswer)
     
 }
-}    
+};    
 
 var checkAnswer = function() {
-    if (questions.choice == questions.correctAnswer) {
-        score++;
-        var questionDiv = document.getElementById('question');
-        questionDiv.remove();
-        var answersDiv = document.getElementById("answers");
-        answersDiv.remove();
-        currentQuestionIndex++;
-        createQuestion();
-    } else {
-        score--;
+    
+
+    for (var i=0; i < questions[currentQuestionIndex].choices.length; i++) {
+    if (questions[currentQuestionIndex].choices[i] == questions[currentQuestionIndex].correctAnswer) {
+        
+        score++; 
         console.log(score);
         var questionDiv = document.getElementById('question');
         questionDiv.remove();
         var answersDiv = document.getElementById("answers");
         answersDiv.remove();
+        currentQuestionIndex++; 
+        createQuestion();
+        updateScore();
+        
+    } else {
+
+        console.log(questions[currentQuestionIndex].correctAnswer);
+        score--;
+        console.log(score + "SCORE");
+        var questionDiv = document.getElementById('question');
+        questionDiv.remove();
+        var answersDiv = document.getElementById("answers");
+        answersDiv.remove();
         currentQuestionIndex++;
         createQuestion();
+        updateScore();
+        
     }
-};
+}
+}
+;
 
 
 
