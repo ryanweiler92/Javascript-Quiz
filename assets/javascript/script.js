@@ -56,18 +56,29 @@ var currentQuestionIndex = 0;
 var score = 0;
 var seconds = 60;
 
+var timeoutVar
+
 var timer = function() {
     
     function time() {
         seconds--;
         counter.innerHTML = "0:" + (seconds < 10 ? "0" : "") + String(seconds);
+        
             if (seconds > 0) {
-                setTimeout(time, 1001); //delete 2 zeros to go back to 1 minute; 
+                timeoutVar = setTimeout(time, 1000); //delete 2 zeros to go back to 1 minute; 
             } else {
                 alert("Times up!");
+                var questionDiv = document.getElementById('question');
+                questionDiv.remove();
+                var questionNumberDiv = document.getElementById('question-number-div');
+                questionNumberDiv.remove();
+                var answersDiv = document.getElementById("answers");
+                answersDiv.remove();
+                endGame();
             }
         } time();
-};
+    
+}
 
 
 var updateScore = function() {
@@ -122,7 +133,7 @@ var createQuestion = function () {
 
 
 var checkAnswer = function(event) {
-
+    
      if (event.target.textContent == questions[currentQuestionIndex].correctAnswer) {
         score = score + 10; 
         var questionDiv = document.getElementById('question');
@@ -141,6 +152,7 @@ var checkAnswer = function(event) {
         }
     }else{
         score = score - 5;
+        seconds = seconds - 5;
         var questionDiv = document.getElementById('question');
         questionDiv.remove();
         var questionNumberDiv = document.getElementById('question-number-div');
@@ -159,6 +171,19 @@ var checkAnswer = function(event) {
     }
 };
 
+
+var saveHighScore = function () {
+    //localStorage.setItem("score", score)
+    //localStorage.setItem("initals", $('#initals').val())
+
+    
+    console.log("test")
+
+ 
+    
+
+}
+
 var endGame = function() {
     counter = seconds
             if (seconds > 49) {
@@ -175,6 +200,7 @@ var endGame = function() {
                 score = score;
             }
             updateScore();
+            clearTimeout(timeoutVar);
 
             var finalScoreMessageDiv = document.createElement('div');
             finalScoreMessageDiv.className = "question-container";
@@ -198,11 +224,9 @@ var endGame = function() {
 
 };
 
-var saveHighScore = function () {
-    localStorage.setItem("initals", score)
-    
 
-}
+
+
    
 
 startButton.addEventListener("click", timer);
