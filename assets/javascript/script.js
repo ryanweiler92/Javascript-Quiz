@@ -190,6 +190,7 @@ var endGame = function() {
                 score = score;
             }
             updateScore();
+            scores.push(score);
             clearTimeout(timeoutVar);
 
             var finalScoreMessageDiv = document.createElement('div');
@@ -205,12 +206,12 @@ var endGame = function() {
             submitScoreForm.method = 'get';
             finalScoreMessageDiv.appendChild(submitScoreForm);
 
-            var initalsInput = document.createElement('input');
-            initalsInput.type = 'text';
-            initalsInput.id = 'initals';
-            initalsInput.placeholder = 'Your Initals'
-            initalsInput.name = 'initals'
-            submitScoreForm.appendChild(initalsInput);
+            var initialsInput = document.createElement('input');
+            initialsInput.type = 'text';
+            initialsInput.id = 'initials';
+            initialsInput.placeholder = 'Your initials'
+            initialsInput.name = 'initials'
+            submitScoreForm.appendChild(initialsInput);
             
             var highScoreButton = document.createElement('button');
             highScoreButton.id = 'save';
@@ -221,23 +222,22 @@ var endGame = function() {
 
 };
 
-var initalsInput = document.getElementById('initals');
+var scores = [];
 
 var saveHighScore = function (e) {
     
-    //e.preventDefault();
-    var value = document.getElementById('#initals');
-    localStorage.setItem("initals", value)
-    console.log(value)
-    //localStorage.setItem("initals",initalsInput.value);
-
+    localStorage.setItem('Score', JSON.stringify(scores));
+    var initialsInput = document.getElementById('initials');
+    localStorage.setItem("initials", JSON.stringify(initialsInput.value));
+    console.log(initialsInput.value)
+    
     e.preventDefault();
 
-    //localStorage.setItem("score", score)
+
     
 
     
-    console.log("test")
+    
 
  
     
