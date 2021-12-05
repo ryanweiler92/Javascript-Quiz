@@ -227,25 +227,16 @@ var scores = [];
 var saveHighScore = function (e) {
     
     localStorage.setItem('Score', JSON.stringify(scores));
+    
     var initialsInput = document.getElementById('initials');
     localStorage.setItem("initials", JSON.stringify(initialsInput.value));
-    console.log(initialsInput.value)
+    
     
     e.preventDefault();
-
-
-    
-
-    
-    
-
- 
-    
 
 }
 
    
-
 startButton.addEventListener("click", timer);
 startButton.addEventListener("click", createQuestion);
 
