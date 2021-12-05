@@ -172,17 +172,7 @@ var checkAnswer = function(event) {
 };
 
 
-var saveHighScore = function () {
-    //localStorage.setItem("score", score)
-    //localStorage.setItem("initals", $('#initals').val())
 
-    
-    console.log("test")
-
- 
-    
-
-}
 
 var endGame = function() {
     counter = seconds
@@ -211,21 +201,48 @@ var endGame = function() {
             finalScoreMessageDiv.appendChild(finalScoreMessage);
 
             var submitScoreForm = document.createElement('form');
+            submitScoreForm.id = 'submit-score-form';
+            submitScoreForm.method = 'get';
             finalScoreMessageDiv.appendChild(submitScoreForm);
 
             var initalsInput = document.createElement('input');
-            initalsInput.innerHTML = '<input type="text" placeholder="Your Initals" id="initals" name="initals" />';
+            initalsInput.type = 'text';
+            initalsInput.id = 'initals';
+            initalsInput.placeholder = 'Your Initals'
+            initalsInput.name = 'initals'
             submitScoreForm.appendChild(initalsInput);
             
             var highScoreButton = document.createElement('button');
+            highScoreButton.id = 'save';
+            highScoreButton.type = 'submit';
             highScoreButton.textContent = 'submit';
             submitScoreForm.appendChild(highScoreButton);
             highScoreButton.addEventListener("click", saveHighScore)
 
 };
 
+var initalsInput = document.getElementById('initals');
 
+var saveHighScore = function (e) {
+    
+    //e.preventDefault();
+    var value = document.getElementById('#initals');
+    localStorage.setItem("initals", value)
+    console.log(value)
+    //localStorage.setItem("initals",initalsInput.value);
 
+    e.preventDefault();
+
+    //localStorage.setItem("score", score)
+    
+
+    
+    console.log("test")
+
+ 
+    
+
+}
 
    
 
