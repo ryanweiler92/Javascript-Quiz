@@ -231,10 +231,38 @@ var saveHighScore = function (e) {
     var initialsInput = document.getElementById('initials');
     localStorage.setItem("initials", JSON.stringify(initialsInput.value));
     
+    postHighScores();
     
-    e.preventDefault();
 
 }
+
+var scoreLoadButton = document.getElementById('score-load-button');
+
+
+
+var postHighScores = function(e) {
+
+    var retrieveScore = localStorage.getItem('Score');
+    var retrieveInitial = localStorage.getItem("initials");
+
+    var tableVar = document.getElementById("high-score-table");
+
+    var tableRow = document.createElement('tr');
+    tableVar.appendChild(tableRow);
+
+    var tableDataInitial = document.createElement('td');
+    tableRow.appendChild(tableDataInitial);
+    tableDataInitial.textContent = retrieveInitial;
+
+    var tableDataScore = document.createElement('td')
+    tableRow.appendChild(tableDataScore);
+    tableDataScore.textContent = retrieveScore;
+
+    e.preventDefault();
+}
+
+
+scoreLoadButton.addEventListener('click', postHighScores);
 
    
 startButton.addEventListener("click", timer);
