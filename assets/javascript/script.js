@@ -1,6 +1,3 @@
-
-
-
 const questions = [{
     id: 1,
     question: "Is a variable named 'orange' the same as 'Orange' in javascript?",

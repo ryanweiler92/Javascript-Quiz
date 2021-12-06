@@ -1,8 +1,10 @@
 var scoreLoadButton = document.getElementById('score-load-button');
+
 scoreLoadButton.addEventListener('click', postHighScores);
 
 
 var postHighScores = function(e) {
+    
     console.log('test');
     // var retrieveScore = localStorage.getItem('Score');
     // var retrieveInitial = localStorage.getItem("initials");
