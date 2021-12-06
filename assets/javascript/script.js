@@ -1,3 +1,6 @@
+
+
+
 const questions = [{
     id: 1,
     question: "Is a variable named 'orange' the same as 'Orange' in javascript?",
@@ -191,6 +194,7 @@ var endGame = function() {
             }
             updateScore();
             scores.push(score);
+            console.log(scores)
             clearTimeout(timeoutVar);
 
             var finalScoreMessageDiv = document.createElement('div');
@@ -223,49 +227,26 @@ var endGame = function() {
 };
 
 var scores = [];
+var initials = [];
+
+
 
 var saveHighScore = function (e) {
-    
+    var initialsInput = document.getElementById('initials');
+    initials.push(initialsInput.value);
+
     localStorage.setItem('Score', JSON.stringify(scores));
     
-    var initialsInput = document.getElementById('initials');
-    localStorage.setItem("initials", JSON.stringify(initialsInput.value));
     
-    postHighScores();
+    localStorage.setItem("initials", JSON.stringify(initials));
+    
+    
     
 
 }
-
-var scoreLoadButton = document.getElementById('score-load-button');
-
-
-
-var postHighScores = function(e) {
-
-    var retrieveScore = localStorage.getItem('Score');
-    var retrieveInitial = localStorage.getItem("initials");
-
-    var tableVar = document.getElementById("high-score-table");
-
-    var tableRow = document.createElement('tr');
-    tableVar.appendChild(tableRow);
-
-    var tableDataInitial = document.createElement('td');
-    tableRow.appendChild(tableDataInitial);
-    tableDataInitial.textContent = retrieveInitial;
-
-    var tableDataScore = document.createElement('td')
-    tableRow.appendChild(tableDataScore);
-    tableDataScore.textContent = retrieveScore;
-
-    e.preventDefault();
-}
-
-
-scoreLoadButton.addEventListener('click', postHighScores);
-
-   
 startButton.addEventListener("click", timer);
+
 startButton.addEventListener("click", createQuestion);
+  
 
-
+//scoreLoadButton.addEventListener('click', postHighScores);
